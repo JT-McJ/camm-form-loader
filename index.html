@@ -11,42 +11,54 @@
       height: 100%;
       font-family: system-ui, sans-serif;
       overflow-x: hidden;
-      background: #000; /* fallback behind video */
     }
 
     /* Background video */
-    video.bg-video {
+    .bg-video {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: -1;
+      z-index: 0; /* base layer */
+      background: black; /* fallback background color */
     }
 
-    /* Page layout with vertical padding and scrollable area */
+    /* Transparent overlay for better text contrast (optional) */
+    .bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 1;
+    }
+
+    /* Form layout */
     .page-container {
+      position: relative;
+      z-index: 2; /* ensures the form is above the video */
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      padding: 60px 20px; /* adds top/bottom spacing and side margin */
+      align-items: flex-start;
+      padding: 80px 20px;
       box-sizing: border-box;
     }
 
-    /* Form wrapper box */
     .form-box {
       background: #ffffff;
       border-radius: 24px;
       padding: 40px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
       width: 100%;
-      max-width: 700px;
+      max-width: 900px;
       box-sizing: border-box;
       animation: fadeIn 0.8s ease-out;
     }
 
-    /* Form content */
     #tripetto-1948fku {
       width: 100%;
     }
@@ -56,7 +68,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Mobile tweaks */
     @media (max-width: 600px) {
       .page-container {
         padding: 40px 10px;
@@ -69,13 +80,15 @@
   </style>
 </head>
 <body>
-  <!-- ☁️ Background video -->
+  <!-- Your background video -->
   <video class="bg-video" autoplay muted loop playsinline>
     <source src="https://video.wixstatic.com/video/9a8188_0590394ebf854430bfb13faa596f477c/1080p/mp4/file.mp4" type="video/mp4">
-    <img src="https://i.gifer.com/7VE.gif" alt="Moving clouds background" />
   </video>
 
-  <!-- 📋 Form container -->
+  <!-- Optional dark overlay for readability -->
+  <div class="bg-overlay"></div>
+
+  <!-- Form container -->
   <div class="page-container">
     <div class="form-box">
       <div id="tripetto-1948fku"></div>
